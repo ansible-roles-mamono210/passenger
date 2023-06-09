@@ -1,0 +1,40 @@
+---
+- name: Install Development Tools with yum
+  ansible.builtin.yum:
+    name: '@Development Tools'
+    state: present
+
+- name: Install prerequisites
+  ansible.builtin.yum:
+    name:
+      - curl-devel
+      - gcc
+      - gcc-c++
+      - httpd-devel
+      - openssl-devel
+      - zlib-devel
+    state: present
+
+- name: Check if Passenger is installed
+  ansible.builtin.command: passenger -v
+  register: passenger_installed
+  changed_when: false
+  ignore_errors: true
+
+- name: Install Passenger
+  community.general.gem:
+    name: passenger
+    include_doc: no
+    user_install: no
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  when: passenger_installed is failed
+
+- name: Run the Passenger Apache module installer
+  ansible.builtin.command: |
+    passenger-install-apache2-module --auto --languages ruby
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  register: passenger_apache_module_installer_run
+  changed_when: passenger_apache_module_installer_run.rc == 0
+  when: passenger_installed is failed

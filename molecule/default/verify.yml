@@ -1,0 +1,25 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Register results of showing configuration snippet command to variable
+      ansible.builtin.command: passenger-install-apache2-module --snippet
+      environment:
+        PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+      register: passenger_snippet
+      changed_when: passenger_snippet.rc == 0
+
+    - name: Make sure passenger is installed.
+      ansible.builtin.debug:
+        var: passenger_snippet
+
+    - name: Check OS version
+      ansible.builtin.command: cat /etc/redhat-release
+      register: os_version
+      changed_when: false
+
+    - name: Show OS version
+      ansible.builtin.debug:
+        var: os_version

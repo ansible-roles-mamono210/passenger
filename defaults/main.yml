@@ -1,0 +1,4 @@
+---
+passenger_swap: False
+
+selinux_state: disabled

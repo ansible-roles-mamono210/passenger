@@ -1,0 +1,21 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Configure SELinux
+      ansible.builtin.include_role:
+        name: robertdebock.selinux
+
+    - name: Install httpd
+      ansible.builtin.include_role:
+        name: mamono210.httpd_install
+
+    - name: Install Ruby
+      ansible.builtin.include_role:
+        name: mamono210.ruby
+
+    - name: Create swap space
+      ansible.builtin.include_role:
+        name: mamono210.swap
