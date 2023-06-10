@@ -16,6 +16,6 @@
       ansible.builtin.include_role:
         name: mamono210.ruby
 
-    - name: Create swap space
+    - name: Create swap file
       ansible.builtin.include_role:
-        name: mamono210.swap
+        name: mamono210.swapfile

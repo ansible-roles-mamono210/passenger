@@ -7,5 +7,5 @@ roles:
   - name: mamono210.ruby
     src: https://github.com/ansible-roles-mamono210/ruby.git
   - name: robertdebock.selinux
-  - name: mamono210.swap
-    src: https://github.com/ansible-roles-mamono210/swap.git
+  - name: mamono210.swapfile
+    src: https://github.com/ansible-roles-mamono210/swapfile.git
