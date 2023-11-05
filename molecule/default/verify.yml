@@ -8,6 +8,16 @@
       ansible.builtin.debug:
         var: ansible_facts.swaptotal_mb
 
+    - name: Check whether ruby is installed
+      ansible.builtin.shell: |
+        ruby --version
+      register: ruby_installed
+      changed_when: false
+
+    - name: Make sure Ruby is installed
+      ansible.builtin.debug:
+        var: ruby_installed
+
     - name: Register results of showing configuration snippet command to variable
       ansible.builtin.command: passenger-install-apache2-module --snippet
       environment:
