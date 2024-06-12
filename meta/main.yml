@@ -3,12 +3,12 @@ dependencies: []
 galaxy_info:
   author: mamono210
   company: no name
-  description: Install passenger.
+  description: Install passenger for Linux.
   galaxy_tags: []
   license: "license (BSD, MIT)"
-  min_ansible_version: 8.0.0
+  min_ansible_version: 10.0.1
   role_name: passenger
   platforms:
     - name: EL
       release:
-        - 8
+        - 9

@@ -1,11 +1,11 @@
 ---
-- name: Install Development Tools with yum
-  ansible.builtin.yum:
+- name: Install Development Tools
+  ansible.builtin.package:
     name: '@Development Tools'
     state: present
 
 - name: Install prerequisites
-  ansible.builtin.yum:
+  ansible.builtin.package:
     name:
       - curl-devel
       - gcc
