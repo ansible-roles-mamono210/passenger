@@ -3,7 +3,7 @@
 Role Description
 =========
 
-Install [passenger](https://www.phusionpassenger.com)  on CentOS Stream 8.
+Install [passenger](https://www.phusionpassenger.com)  on CentOS Stream.
 
 Requirements
 ------------
