@@ -1,0 +1,6 @@
+---
+- name: Restart Apache after Passenger configuration
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
+  listen: Restart Apache

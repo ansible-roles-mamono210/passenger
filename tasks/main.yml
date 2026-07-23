@@ -31,10 +31,11 @@
   when: passenger_installed is failed
 
 - name: Run the Passenger Apache module installer
-  ansible.builtin.command: |
-    passenger-install-apache2-module --auto --languages ruby
+  ansible.builtin.command:
+    cmd: passenger-install-apache2-module --auto --languages ruby
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   register: passenger_apache_module_installer_run
   changed_when: passenger_apache_module_installer_run.rc == 0
-  when: passenger_installed is failed
+  when: passenger_installed.rc != 0
+  notify: Restart Apache
